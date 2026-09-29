@@ -225,9 +225,9 @@ projeto-2/
 │   └── ...
 │
 ├── app/
-│   ├── crud/
+│   ├── crud.py
 │   ├── routers/
-│   ├── exceptions/
+│   ├── exceptions.py
 │   ├── database.py
 │   ├── models.py
 │   ├── schemas.py
@@ -395,6 +395,3 @@ Backend concluído, incluindo:
 * ambiente Docker;
 * seed;
 * documentação.
-
-```
-```

@@ -4,7 +4,7 @@ from app.main import app
 
 client = TestClient(app)
 
-def test_app_is_running(category_id):
+def test_app_is_running():
     response = client.get("/products")
     
     assert response.status_code == 200
