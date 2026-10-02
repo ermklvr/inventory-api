@@ -277,3 +277,21 @@ def test_delete_category_with_product(category_id):
     )
 
     assert delete_response.status_code == 409
+    
+def test_delete_in_movement_with_insufficient_stock(category_id):
+    pid = client.post("/products", json={"name": "P", "price": 10,
+        "stock_quantity": 10, "category_id": category_id}).json()["id"]
+    mid = client.post("/movements/", json={"product_id": pid,
+        "type": "IN", "quantity": 5}).json()["id"]
+    client.post("/movements/", json={"product_id": pid, "type": "OUT", "quantity": 12})
+    assert client.delete(f"/movements/{mid}").status_code == 409
+    
+def test_update_product_cannot_change_stock(category_id):
+    pid = client.post("/products", json={"name": "P", "price": 10,
+        "stock_quantity": 10, "category_id": category_id}).json()["id"]
+
+    r = client.put(f"/products/{pid}", json={"name": "P", "price": 10,
+        "stock_quantity": 999, "category_id": category_id})
+    assert r.status_code == 422
+
+    assert client.get(f"/products/{pid}").json()["stock_quantity"] == 10

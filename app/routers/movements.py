@@ -69,6 +69,9 @@ def delete_movement(
     except MovementNotFoundError:
         raise HTTPException(status_code=404,
                             detail="Movement not found")
+    except InsufficientStockError:
+        raise HTTPException(status_code=409,
+        detail="Cannot delete: stock would become negative")
     except ProductNotFoundError:
         raise HTTPException(status_code = 404, 
                             detail="Product not found") 
