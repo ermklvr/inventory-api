@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from ..database import get_db
 from ..models import Product,Category
-from ..schemas import ProductCreate, ProductResponse
+from ..schemas import ProductCreate, ProductResponse, ProductUpdate
 
 from ..exceptions import ProductNotFoundError, CategoryNotFoundError
 
@@ -50,7 +50,7 @@ def get_product_by_id (
 
 #UPDATE
 @router.put("/{product_id}", response_model=ProductResponse)
-def update_product(product_id: int, product: ProductCreate, db: Session = Depends(get_db)):
+def update_product(product_id: int, product: ProductUpdate, db: Session = Depends(get_db)):
     try:
         return crud.update_product(db,product_id,product)
     except ProductNotFoundError:

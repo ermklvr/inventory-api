@@ -119,7 +119,6 @@ def update_product(db, product_id, product):
 
     up_product.name = product.name
     up_product.price = product.price
-    up_product.stock_quantity = product.stock_quantity
     up_product.category_id = product.category_id
     db.commit()
     db.refresh(up_product)
