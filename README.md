@@ -107,7 +107,7 @@ A API utiliza exceções específicas para regras de negócio e retorna códigos
 ### 1. Clonar o projeto
 
 ```bash
-git clone https://github.com/ermklvr/inventory-api.git
+git clone https://github.com/guto-henrique/inventory-api.git
 cd inventory-api
 ```
 
